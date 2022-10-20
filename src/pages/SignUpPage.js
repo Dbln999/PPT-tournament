@@ -6,7 +6,7 @@ import backArrow from "../assets/backArrow.png";
 import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
-  const { auth, firestore, firebase } = useContext(Context);
+  const { auth } = useContext(Context);
   const [form, setForm] = useState({ email: "", password: "", confirm: "" });
 
   const formHandler = (e) => {
@@ -33,11 +33,12 @@ const SignUpPage = () => {
 
   const signUp = async () => {
     await auth.createUserWithEmailAndPassword(form.email, form.password);
+    window.open('/', '_self')
   };
 
   return (
     <>
-      <Link to='/'>
+      <Link to="/">
         <img
           src={backArrow}
           alt="back button"
@@ -87,6 +88,7 @@ const SignUpPage = () => {
             </div>
           </Form.Group>
         </Form>
+
         <Row className="d-flex justify-content-center">
           <Button
             className="bg-blue text-black fs-5 mt-3 signBtns w-25"

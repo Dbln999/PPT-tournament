@@ -1,34 +1,42 @@
-import React, { useContext, useState } from "react";
-import NavComponent from "./NavComponent";
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import NavComponent from "../Components/NavComponent";
+import { Button, Container, Modal } from "react-bootstrap";
 import userImage from "../assets/user.png";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Context } from "../index";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import Stats from "./Stats";
-import StatsName from "./StatsName";
+import Stats from "../Components/Stats";
+import StatsName from "../Components/StatsName";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { Link, useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import {
+  addNames, closeModal,
+  concatList,
+  createTournament,
+} from "../store/tournamentSlice";
 
-const ProfilePage = () => {
-  const { auth, firestore, firebase, storage } = useContext(Context);
+const ProfilePage = (props) => {
+  useEffect(() => {
+    const data = localStorage.getItem("players");
+    const data1 = localStorage.getItem("tournament");
+    console.log("render");
+
+    if (data && data1) {
+      props.concatList(JSON.parse(data));
+      props.createTournament(JSON.parse(data1));
+      props.closeModal()
+    }
+  }, []);
+
+
+  const { auth, firestore, storage } = useContext(Context);
+  const { id } = useParams();
   const [user] = useAuthState(auth);
   const [stats] = useCollectionData(
     firestore.collection(`stats-${user.uid}`).orderBy("uid")
   );
 
-  const createCollection = async () => {
-    firestore.collection(`stats-${user.uid}`).doc("statistic").set({
-      uid: user.uid,
-      matches: 0,
-      win: 0,
-      loss: 0,
-      winRate: 0,
-      age: 0,
-      name: "",
-      nickname: "",
-      avatar: userImage,
-    });
-  };
   const [avatar, setAvatar] = useState(null);
   const uploadImage = async (e) => {
     if (avatar === null) return;
@@ -40,6 +48,7 @@ const ProfilePage = () => {
           avatar: url,
         });
       });
+      handleClose();
     }
   };
 
@@ -52,7 +61,7 @@ const ProfilePage = () => {
     <>
       <NavComponent />
       <Container>
-        <div className="d-flex justify-content-start mt-5 bg-profileBg">
+        <div className="d-flex justify-content-start mt-5 bg-profileBg rounded-3">
           <div className="d-flex justify-content-center align-items-center">
             {stats?.map((st) => {
               return (
@@ -67,11 +76,15 @@ const ProfilePage = () => {
           </div>
           <div>
             <div className="d-flex flex-column py-3 mx-3">
+              <Link to="/edit" className="text-decoration-none">
+                <span className="fs-4" style={{ cursor: "pointer" }}>
+                  ✎
+                </span>
+              </Link>
               {stats?.map((st) => {
                 return <StatsName stats={st} key={st.uid}></StatsName>;
               })}
             </div>
-            <button onClick={createCollection}></button>
           </div>
         </div>
         <>
@@ -82,7 +95,6 @@ const ProfilePage = () => {
           >
             Change avatar
           </Button>
-
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Change avatar</Modal.Title>
@@ -113,4 +125,12 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+const mapDispatchToProps = {
+  addNames,
+  concatList,
+  createTournament,
+  closeModal
+
+};
+
+export default connect(null, mapDispatchToProps)(ProfilePage);
