@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/PPT-tournament/static/css/main.b8d3c6ab.css",
-    "main.js": "/PPT-tournament/static/js/main.932b05d1.js",
+    "main.css": "/PPT-tournament/static/css/main.dabf4397.css",
+    "main.js": "/PPT-tournament/static/js/main.0337c827.js",
     "static/media/google.png": "/PPT-tournament/static/media/google.0590aaf0fe36e23dcc8c.png",
     "static/media/eye.png": "/PPT-tournament/static/media/eye.96c265df819b0ed2fbe0.png",
     "static/media/user.png": "/PPT-tournament/static/media/user.73011e17ea1d1579221c.png",
     "index.html": "/PPT-tournament/index.html",
-    "main.b8d3c6ab.css.map": "/PPT-tournament/static/css/main.b8d3c6ab.css.map",
-    "main.932b05d1.js.map": "/PPT-tournament/static/js/main.932b05d1.js.map"
+    "main.dabf4397.css.map": "/PPT-tournament/static/css/main.dabf4397.css.map",
+    "main.0337c827.js.map": "/PPT-tournament/static/js/main.0337c827.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8d3c6ab.css",
-    "static/js/main.932b05d1.js"
+    "static/css/main.dabf4397.css",
+    "static/js/main.0337c827.js"
   ]
 }
