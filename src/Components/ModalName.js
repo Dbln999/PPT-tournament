@@ -11,6 +11,7 @@ function ModalName({ teams, ...props }) {
     if (amountOfClicks === Number(teams)) {
       props.shuffle();
       props.closeModal();
+
     }
   }, [amountOfClicks, teams]);
 
