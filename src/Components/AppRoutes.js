@@ -15,17 +15,17 @@ const AppRoutes = () => {
 
   return user ? (
     <Routes>
-      <Route path="/" element={<ProfilePage></ProfilePage>}></Route>
+      <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
       <Route path="/create" element={<CreateGame></CreateGame>}></Route>
       <Route path="/edit" element={<EditProfilePage></EditProfilePage>}></Route>
       <Route
         path="/tournament"
         element={<TournamentPage></TournamentPage>}
       ></Route>
-      {/*<Route*/}
-      {/*  path="*"*/}
-      {/*  element={<Navigate replace to="/profile"></Navigate>}*/}
-      {/*></Route>*/}
+      <Route
+        path="*"
+        element={<Navigate replace to="/profile"></Navigate>}
+      ></Route>
     </Routes>
   ) : (
     <Routes>

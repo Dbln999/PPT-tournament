@@ -33,12 +33,12 @@ const SignUpPage = () => {
 
   const signUp = async () => {
     await auth.createUserWithEmailAndPassword(form.email, form.password);
-    window.open('/', '_self')
+    window.open('/profile', '_self')
   };
 
   return (
     <>
-      <Link to="/">
+      <Link to="/profile">
         <img
           src={backArrow}
           alt="back button"

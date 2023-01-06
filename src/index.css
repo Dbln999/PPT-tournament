@@ -222,7 +222,6 @@ button:hover {
   height: 5rem;
   border-radius: 15px;
   margin-bottom: 250px;
-  z-index: 1;
 }
 .semiContainer-2 {
   position: absolute;
@@ -234,7 +233,7 @@ button:hover {
 }
 .horizontal-line {
   position: absolute;
-  width: 500px;
+  width: 750px;
   height: 5px;
   background: gray;
   left: 30%;
@@ -269,6 +268,13 @@ button:hover {
   .line {
     margin-left: 60px;
   }
+}
+
+@media only screen and (max-width: 1430px) {
+  .horizontal-line {
+    width: 520px;
+  }
+
 }
 
 @media only screen and (max-width: 840px) {

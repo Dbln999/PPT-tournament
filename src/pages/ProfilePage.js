@@ -20,7 +20,6 @@ const ProfilePage = (props) => {
   useEffect(() => {
     const data = localStorage.getItem("players");
     const data1 = localStorage.getItem("tournament");
-    console.log("render");
 
     if (data && data1) {
       props.concatList(JSON.parse(data));

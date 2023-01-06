@@ -65,7 +65,7 @@ const TournamentPage = ({
   const clearHandler = () => {
     localStorage.removeItem("tournament");
     localStorage.removeItem("players");
-    window.open("/", "_self");
+    window.open("/profile", "_self");
   };
 
   return (
@@ -104,9 +104,9 @@ const TournamentPage = ({
             </div>
           )}
 
-          {!modal && (
-            <div className="finalContainer mt-5 d-flex bg-success border-0 justify-content-center align-items-center"></div>
-          )}
+          {/*{modal && (*/}
+          {/*  <div className="finalContainer mt-5 d-flex bg-success border-0 justify-content-center align-items-center"></div>*/}
+          {/*)}*/}
           {tournament[0].numOfTeams === "8" &&!modal && (
             <div className="semiContainer-2 bg-blue"></div>
           )}

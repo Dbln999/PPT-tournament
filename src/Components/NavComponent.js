@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import menu from "../assets/menu.png";
 import { Link } from "react-router-dom";
 import { Context } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useSelector } from "react-redux";
 const NavComponent = () => {
   const [toggleClassName, setToggleClassName] = useState("");
   const { auth, firestore } = useContext(Context);
@@ -11,7 +12,7 @@ const NavComponent = () => {
 
   const [stats] = useCollectionData(firestore.collection(`stats-${user.uid}`));
 
-  const list = [
+  let list = [
     { id: 0, href: "/tournament", title: "Rejoin Tournament" },
     { id: 1, href: "/create", title: "Create Tournament" },
     { id: 2, href: "/friends", title: "Friends" },
@@ -20,6 +21,10 @@ const NavComponent = () => {
   const signOut = async () => {
     await auth.signOut();
   };
+
+  const tournament = useSelector((state) => state.tournament.tournament);
+
+  if (tournament.length === 0) list = list.filter((l) => l.id > 0);
 
   const toggle = () => {
     if (toggleClassName === "") {
@@ -33,7 +38,7 @@ const NavComponent = () => {
     <div id="wrapper" className={`${toggleClassName} b-bottom`}>
       <div id="sidebar-wrapper">
         <ul className="sidebar-nav">
-          <Link to="/" className="text-decoration-none ">
+          <Link to="/profile" className="text-decoration-none ">
             <li className="d-flex justify-content-between align-items-center b-bottom">
               <div className="ava d-flex justify-content-center align-items-center">
                 <img src={stats?.map((st) => st.avatar)} alt="" width="50" />

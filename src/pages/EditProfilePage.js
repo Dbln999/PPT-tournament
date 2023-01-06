@@ -16,8 +16,8 @@ const EditProfilePage = () => {
 
   const [form, setForm] = useState({ name: "", nickname: "", age: 0 });
 
-  console.log(form)
-  console.log(stats)
+  console.log(form);
+  console.log(stats);
 
   const createCollection = async () => {
     if (
@@ -52,6 +52,9 @@ const EditProfilePage = () => {
         name: form.name,
         nickname: form.nickname,
       });
+      setTimeout(() => {
+        window.open("/profile", "_self");
+      }, 1500);
     } else {
       alert("error");
     }
@@ -63,7 +66,7 @@ const EditProfilePage = () => {
 
   return (
     <>
-      <Link to="/">
+      <Link to="/profile">
         <img
           src={backArrow}
           alt="back button"
