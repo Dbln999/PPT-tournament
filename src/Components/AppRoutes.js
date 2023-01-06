@@ -12,6 +12,7 @@ import EditProfilePage from "../pages/EditProfilePage";
 const AppRoutes = () => {
   const { auth } = useContext(Context);
   const [user] = useAuthState(auth);
+  console.log(user);
 
   return user ? (
     <Routes>
@@ -22,10 +23,12 @@ const AppRoutes = () => {
         path="/tournament"
         element={<TournamentPage></TournamentPage>}
       ></Route>
+      {/*<Route path="/" element={<SignIn></SignIn>}></Route>*/}
       <Route
         path="*"
+        index
         element={<Navigate replace to="/profile"></Navigate>}
-      ></Route>
+      ></Route>{" "}
     </Routes>
   ) : (
     <Routes>

@@ -85,11 +85,7 @@ const TournamentPage = ({
         <Col
           className={`d-flex justify-content-around align-items-center flex-column flex-wrap height-${tournament[0]?.numOfTeams}`}
         >
-          {tournament[0].numOfTeams === "8" && !modal &&  (
-            <>
-              <div className="semiContainer bg-blue"></div>
-            </>
-          )}
+
           {winner.length === 0 || winner.length > 1 ? (
             <ParticipantContainer />
           ) : (
@@ -107,9 +103,7 @@ const TournamentPage = ({
           {/*{modal && (*/}
           {/*  <div className="finalContainer mt-5 d-flex bg-success border-0 justify-content-center align-items-center"></div>*/}
           {/*)}*/}
-          {tournament[0].numOfTeams === "8" &&!modal && (
-            <div className="semiContainer-2 bg-blue"></div>
-          )}
+
         </Col>
       </Row>
       <div className="d-flex align-items-center my-5 flex-column">

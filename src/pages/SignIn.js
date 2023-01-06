@@ -45,7 +45,7 @@ const SignIn = () => {
 
   const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
+    const user = await auth.signInWithPopup(provider);
   };
 
   return (
