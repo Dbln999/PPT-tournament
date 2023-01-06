@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import menu from "../assets/menu.png";
 import { Link } from "react-router-dom";
 import { Context } from "../index";

@@ -1,36 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
 import NavComponent from "../Components/NavComponent";
 import { Button, Container, Modal } from "react-bootstrap";
-import userImage from "../assets/user.png";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Context } from "../index";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import Stats from "../Components/Stats";
 import StatsName from "../Components/StatsName";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  addNames, closeModal,
+  addNames,
+  closeModal,
   concatList,
   createTournament,
 } from "../store/tournamentSlice";
 
-const ProfilePage = (props) => {
+const ProfilePage = (props, { concatList, createTournament, closeModal }) => {
   useEffect(() => {
     const data = localStorage.getItem("players");
     const data1 = localStorage.getItem("tournament");
 
     if (data && data1) {
-      props.concatList(JSON.parse(data));
-      props.createTournament(JSON.parse(data1));
-      props.closeModal()
+      concatList(JSON.parse(data));
+      createTournament(JSON.parse(data1));
+      closeModal();
     }
   }, []);
 
-
   const { auth, firestore, storage } = useContext(Context);
-  const { id } = useParams();
   const [user] = useAuthState(auth);
   const [stats] = useCollectionData(
     firestore.collection(`stats-${user.uid}`).orderBy("uid")
@@ -128,8 +126,7 @@ const mapDispatchToProps = {
   addNames,
   concatList,
   createTournament,
-  closeModal
-
+  closeModal,
 };
 
 export default connect(null, mapDispatchToProps)(ProfilePage);

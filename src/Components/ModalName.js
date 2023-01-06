@@ -8,7 +8,7 @@ function ModalName({ teams, ...props }) {
   const [amountOfClicks, setAmountOfClicks] = useState(0);
 
   useEffect(() => {
-    if (amountOfClicks == teams) {
+    if (amountOfClicks === Number(teams)) {
       props.shuffle();
       props.closeModal();
     }

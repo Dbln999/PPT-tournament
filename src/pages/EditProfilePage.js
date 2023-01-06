@@ -26,7 +26,7 @@ const EditProfilePage = () => {
       form.nickname.length < 15 &&
       form.age > 7 &&
       form.age < 75 &&
-      stats.length == 0
+      stats.length === 0
     ) {
       firestore.collection(`stats-${user.uid}`).doc("statistic").set({
         uid: user.uid,
